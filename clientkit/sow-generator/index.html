@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Statement of Work (SOW) Generator for Freelancers | ClientKit</title>
+<meta name="description" content="Create a clear statement of work in minutes: deliverables, timeline, milestones, out-of-scope items, revisions, acceptance and payment schedule. Free, no signup, print or save as PDF.">
+<link rel="canonical" href="https://victorferreira196.github.io/clientkit/sow-generator/">
+<meta property="og:title" content="Free Statement of Work (SOW) Generator for Freelancers">
+<meta property="og:description" content="Deliverables, milestones, scope limits and payment terms in one printable SOW. Free, runs in your browser.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ClientKit Statement of Work Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://victorferreira196.github.io/clientkit/sow-generator/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a statement of work?","acceptedAnswer":{"@type":"Answer","text":"A statement of work (SOW) is a document that defines exactly what a freelancer will deliver, by when, for how much, and what is not included. It sits next to a contract or proposal and prevents scope creep."}},
+{"@type":"Question","name":"What is the difference between a SOW and a proposal?","acceptedAnswer":{"@type":"Answer","text":"A proposal sells the project; a SOW specifies it. Once the client says yes, the SOW lists deliverables, milestones, acceptance criteria and payment terms both sides agree to."}},
+{"@type":"Question","name":"What should be out of scope in a SOW?","acceptedAnswer":{"@type":"Answer","text":"List anything the client might reasonably assume is included but is not: extra pages, copywriting, hosting, stock assets, ongoing maintenance, or more revision rounds. Naming them up front makes change requests easy to price."}},
+{"@type":"Question","name":"Is this SOW legally binding?","acceptedAnswer":{"@type":"Answer","text":"It becomes part of your agreement once both parties sign it, but it is a template, not legal advice. Have a local lawyer review terms for high-value projects."}}]}
+</script>
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+nav{max-width:1200px;margin:auto;padding:14px 20px 0;font-size:13px}nav a{color:var(--muted);margin-right:14px;text-decoration:none}nav a[aria-current]{color:var(--ink);font-weight:600}
+header{padding:16px 20px 8px;max-width:1200px;margin:auto}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}header p{margin:0;color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(320px,460px) 1fr;gap:20px;max-width:1200px;margin:16px auto;padding:0 20px}@media(max-width:900px){main{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}textarea{min-height:64px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.del{display:grid;grid-template-columns:1.4fr 1fr .8fr 28px;gap:6px;margin-bottom:6px}.del button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer;font:inherit}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+#doc{font-size:14px}#doc h2{font-size:22px;margin:0 0 4px}#doc h3{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:20px 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px}
+#doc table{width:100%;border-collapse:collapse}#doc td,#doc th{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}#doc th{font-size:12px;color:var(--muted)}#doc td.n,#doc th.n{text-align:right}
+#doc ul{margin:4px 0;padding-left:20px}.meta{color:var(--muted)}.sig{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}.sig div{border-top:1px solid var(--ink);padding-top:6px;font-size:13px}
+.pro{max-width:1200px;margin:8px auto 30px;padding:0 20px}.pro .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#101828;color:#fff;border:0}
+.pro a{background:var(--accent);color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.faq{max-width:820px;margin:0 auto 40px;padding:0 20px;color:var(--muted)}.faq h2{color:var(--ink);font-size:20px}.faq h3{color:var(--ink);font-size:15px;margin-bottom:2px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a{color:var(--muted)}
+@media print{nav,header,#form,.pro,.faq,footer,.actions{display:none!important}body{background:#fff}main{display:block;margin:0;padding:0}.panel{border:0;padding:0}}
+</style>
+</head>
+<body>
+<nav><a href="../">Proposal generator</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="./" aria-current="page">SOW generator</a></nav>
+<header><h1>Statement of Work (SOW) Generator</h1><p>Spell out deliverables, milestones, what's out of scope and how you get paid — before the work starts. Everything stays in your browser.</p></header>
+<main>
+<section class="panel" id="form" aria-label="SOW details">
+<div class="row"><div><label for="free">Your name / business</label><input id="free" value="Alex Rivera Studio"></div><div><label for="client">Client</label><input id="client" value="Northwind Coffee Co."></div></div>
+<label for="title">Project title</label><input id="title" value="Website redesign">
+<div class="row3"><div><label for="start">Start date</label><input id="start" type="date"></div><div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>BRL</option><option>INR</option></select></div><div><label for="ref">SOW no.</label><input id="ref" value="SOW-001"></div></div>
+<label for="obj">Objective</label><textarea id="obj">Redesign the marketing website so visitors can find the menu, locations and online ordering in under two clicks.</textarea>
+<label>Deliverables (name · due in days · price)</label>
+<div id="dels"></div><button class="btn" type="button" id="add">+ Add deliverable</button>
+<label for="oos">Out of scope (one per line)</label><textarea id="oos">Copywriting and photography
+Hosting, domain and email setup
+Ongoing maintenance after launch</textarea>
+<label for="assume">Client responsibilities / assumptions (one per line)</label><textarea id="assume">Client provides brand assets and content within 5 business days of request
+One point of contact gives consolidated feedback</textarea>
+<div class="row"><div><label for="revs">Revision rounds per deliverable</label><input id="revs" type="number" min="0" value="2"></div><div><label for="accept">Review window (business days)</label><input id="accept" type="number" min="1" value="5"></div></div>
+<div class="row"><div><label for="dep">Deposit %</label><input id="dep" type="number" min="0" max="100" value="40"></div><div><label for="cr">Change request rate / hour</label><input id="cr" type="number" min="0" value="85"></div></div>
+<label for="terms">Payment terms</label><select id="terms"><option value="milestones">Deposit, then balance split across deliverables</option><option value="completion">Deposit, balance on final delivery</option></select>
+<div class="actions"><button class="btn primary" type="button" id="print">Print / save as PDF</button><button class="btn" type="button" id="copy">Copy as text</button><span id="msg" class="meta" aria-live="polite"></span></div>
+</section>
+<section class="panel" id="doc" aria-live="polite"></section>
+</main>
+<section class="pro"><div class="panel">
+<div><strong style="font-size:18px">Scope set? Send a proposal clients sign online.</strong><br><span style="opacity:.8">ClientKit Pro: niche proposals, contract, scope-change form, payment reminders — 12 templates.</span></div>
+<a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
+<section class="faq"><h2>Statement of work: common questions</h2>
+<h3>What is a statement of work?</h3><p>A statement of work (SOW) defines exactly what you will deliver, by when, for how much — and what is not included. It sits next to your contract or proposal and is the document you point to when scope starts to creep.</p>
+<h3>What is the difference between a SOW and a proposal?</h3><p>A proposal sells the project; a SOW specifies it. Once the client says yes, the SOW lists deliverables, milestones, acceptance criteria and payment terms both sides agree to. Start with the <a href="../">free proposal generator</a>, then lock the details here.</p>
+<h3>What should be out of scope?</h3><p>Anything the client might reasonably assume is included but isn't: extra pages, copywriting, hosting, stock assets, maintenance or more revision rounds. Naming them up front turns "can you just…" into a priced change request.</p>
+<h3>How do I price the deliverables?</h3><p>Estimate hours per deliverable and multiply by a rate that covers taxes, costs and unbilled time — the <a href="../rate-calculator/">rate calculator</a> gives you that floor. Bill each milestone with the <a href="../invoice-generator/">invoice generator</a>.</p>
+<h3>Is this SOW legally binding?</h3><p>It becomes part of your agreement once both parties sign it, but it is a template, not legal advice. Have a local lawyer review terms for high-value projects.</p></section>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a></footer>
+<script>
+const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
+const $=id=>document.getElementById(id);const KEY="clientkit-sow-v1";
+const fields=["free","client","title","start","cur","ref","obj","oos","assume","revs","accept","dep","cr","terms"];
+let dels=[{n:"Discovery & sitemap",d:7,p:600},{n:"Homepage + 4 inner page designs",d:21,p:1800},{n:"Build, QA and launch",d:35,p:1600}];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>{try{return new Intl.NumberFormat("en",{style:"currency",currency:$("cur").value}).format(n)}catch(e){return n.toFixed(2)}};
+const lines=id=>$(id).value.split("\n").map(s=>s.trim()).filter(Boolean);
+const addDays=(iso,d)=>{if(!iso)return"";const t=new Date(iso+"T12:00:00");t.setDate(t.getDate()+(+d||0));return t.toLocaleDateString("en",{year:"numeric",month:"short",day:"numeric"})};
+function drawDels(){$("dels").innerHTML=dels.map((x,i)=>`<div class="del"><input aria-label="Deliverable ${i+1} name" data-i="${i}" data-k="n" value="${esc(x.n)}"><input aria-label="Deliverable ${i+1} due in days" type="number" min="0" data-i="${i}" data-k="d" value="${x.d}"><input aria-label="Deliverable ${i+1} price" type="number" min="0" data-i="${i}" data-k="p" value="${x.p}"><button type="button" aria-label="Remove deliverable ${i+1}" data-rm="${i}">×</button></div>`).join("")}
+function schedule(){
+ const total=dels.reduce((s,x)=>s+(+x.p||0),0),dep=Math.min(100,Math.max(0,+$("dep").value||0))/100;
+ const r=[{label:"Deposit on signing ("+Math.round(dep*100)+"%)",amt:Math.round(total*dep*100)/100}];
+ const bal=Math.round((total-r[0].amt)*100)/100;
+ if($("terms").value==="completion"||!dels.length){r.push({label:"Balance on final delivery",amt:bal})}
+ else{let left=bal;dels.forEach((x,i)=>{const a=i===dels.length-1?Math.round(left*100)/100:Math.round(bal*(total?(+x.p||0)/total:1/dels.length)*100)/100;left-=a;r.push({label:"On acceptance of: "+(x.n||"Deliverable "+(i+1)),amt:a})})}
+ return{total,rows:r}
+}
+function render(){
+ const s=schedule(),start=$("start").value;
+ const ul=a=>a.length?"<ul>"+a.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>":"<p class='meta'>None listed.</p>";
+ $("doc").innerHTML=`<h2>Statement of Work — ${esc($("title").value||"Project")}</h2>
+<p class="meta">${esc($("ref").value)} · Prepared by ${esc($("free").value)} for ${esc($("client").value)}${start?" · Start "+addDays(start,0):""}</p>
+<h3>1. Objective</h3><p>${esc($("obj").value)}</p>
+<h3>2. Deliverables & timeline</h3><table><tr><th>#</th><th>Deliverable</th><th>Due</th><th class="n">Fee</th></tr>${dels.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.n)}</td><td>${start?addDays(start,x.d):"Day "+(+x.d||0)}</td><td class="n">${money(+x.p||0)}</td></tr>`).join("")}<tr><td></td><td><b>Total</b></td><td></td><td class="n"><b id="total">${money(s.total)}</b></td></tr></table>
+<h3>3. Out of scope</h3>${ul(lines("oos"))}<p class="meta">Out-of-scope work is quoted separately or billed at ${money(+$("cr").value||0)}/hour after written approval.</p>
+<h3>4. Client responsibilities & assumptions</h3>${ul(lines("assume"))}
+<h3>5. Revisions & acceptance</h3><p>Each deliverable includes ${+$("revs").value||0} round(s) of revisions. The client reviews each deliverable within ${+$("accept").value||0} business days; if no written feedback is received in that window, the deliverable is considered accepted.</p>
+<h3>6. Payment schedule</h3><table id="sched">${s.rows.map(r=>`<tr><td>${esc(r.label)}</td><td class="n">${money(r.amt)}</td></tr>`).join("")}</table>
+<h3>7. Change requests</h3><p>Changes to the deliverables, timeline or fees are agreed in writing before work begins and may move the dates above.</p>
+<div class="sig"><div>${esc($("free").value)}<br>Signature & date</div><div>${esc($("client").value)}<br>Signature & date</div></div>`;
+ try{localStorage.setItem(KEY,JSON.stringify({f:Object.fromEntries(fields.map(i=>[i,$(i).value])),dels}))}catch(e){}
+}
+try{const st=JSON.parse(localStorage.getItem(KEY)||"null");if(st){fields.forEach(i=>{if(st.f&&st.f[i]!=null)$(i).value=st.f[i]});if(Array.isArray(st.dels))dels=st.dels}}catch(e){}
+if(!$("start").value)$("start").value=new Date().toISOString().slice(0,10);
+drawDels();render();
+$("dels").addEventListener("input",e=>{const t=e.target;if(t.dataset.i!=null){dels[+t.dataset.i][t.dataset.k]=t.dataset.k==="n"?t.value:+t.value;render()}});
+$("dels").addEventListener("click",e=>{const i=e.target.dataset.rm;if(i!=null){dels.splice(+i,1);drawDels();render()}});
+$("add").addEventListener("click",()=>{dels.push({n:"New deliverable",d:(dels.length?+dels[dels.length-1].d+7:7),p:0});drawDels();render()});
+$("form").addEventListener("input",e=>{if(!e.target.dataset.i)render()});$("form").addEventListener("change",render);
+$("print").addEventListener("click",()=>window.print());
+$("copy").addEventListener("click",async()=>{const t=$("doc").innerText;try{await navigator.clipboard.writeText(t);$("msg").textContent="Copied."}catch(e){$("msg").textContent="Select the document and copy manually."}});
+document.querySelectorAll(".buy").forEach(b=>{if(CHECKOUT_URL){b.href=CHECKOUT_URL}else{b.textContent="Pro pack — coming soon";b.removeAttribute("href");b.style.opacity=.7}});
+</script>
+</body>
+</html>
