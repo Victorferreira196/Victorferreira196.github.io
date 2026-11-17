@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proposal | ClientKit</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff;--ok:#0f7a3d}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:820px;margin:24px auto;padding:0 16px}
+#doc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:48px 52px}
+@media(max-width:600px){#doc{padding:28px 22px}}
+#doc h2{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}#doc h3{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:28px 0 8px}
+.meta{color:var(--muted);font-size:13px}#doc table{width:100%;border-collapse:collapse}#doc td{padding:8px 0;border-bottom:1px solid var(--line)}#doc td:last-child{text-align:right;white-space:nowrap}
+#doc .total td{font-weight:700;border-bottom:0;font-size:16px}#doc p{white-space:pre-wrap;margin:0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:16px}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.check{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:14px}.check input{width:auto;margin-top:4px}
+button,.btn{font:inherit;border:0;border-radius:8px;padding:11px 16px;cursor:pointer;background:var(--ink);color:#fff;text-decoration:none;display:inline-block}
+button.ghost,.btn.ghost{background:#eef0f4;color:var(--ink)}button:disabled{opacity:.4;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.banner{border-radius:12px;padding:16px 20px;margin-bottom:16px;background:#e8f6ee;color:var(--ok);border:1px solid #bfe5cf}
+.sigline{font-family:"Segoe Script","Brush Script MT",cursive;font-size:26px;color:var(--ink)}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}.sign div{border-top:1px solid var(--ink);padding-top:6px;font-size:13px;color:var(--muted)}
+.err{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;text-align:center}
+code{font-size:12px;word-break:break-all;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}footer a{color:var(--muted)}
+@media print{.panel,footer,.noprint{display:none!important}body{background:#fff}#doc{border:0;padding:0}.wrap{margin:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="banner"></div>
+<article id="doc"></article>
+<section class="panel noprint" id="acceptBox" hidden>
+<strong style="font-size:17px">Accept this proposal</strong>
+<div class="meta">Type your full name to sign. You'll get a confirmation link to send back to <span id="toName">the sender</span>.</div>
+<label for="signer">Full name</label><input id="signer" autocomplete="name" placeholder="Your full name">
+<label for="role">Title / company (optional)</label><input id="role" placeholder="CEO, Acme Inc.">
+<div class="check"><input type="checkbox" id="agree"><label for="agree" style="all:unset;cursor:pointer">I have read this proposal and agree to its scope, price and terms.</label></div>
+<div class="actions"><button id="accept" disabled>Sign & accept</button><button class="ghost" id="print1">Download PDF</button></div>
+</section>
+<section class="panel noprint" id="doneBox" hidden>
+<strong style="font-size:17px">Signed. Send the confirmation back</strong>
+<div class="meta">This link contains the proposal and your signature. Send it to the sender so they have the signed copy.</div>
+<div class="actions"><a class="btn" id="mail" href="#">Email confirmation</a><button class="ghost" id="copy">Copy link</button><button class="ghost" id="print2">Download signed PDF</button></div>
+<p class="meta" id="copied" style="margin-top:8px"></p>
+</section>
+</div>
+<footer class="noprint">Sent with <a href="../">ClientKit</a> — free proposal, invoice and rate tools for freelancers.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const b64u={enc:u8=>{let s="";u8.forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")},
+ dec:s=>{s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";const b=atob(s);return Uint8Array.from(b,c=>c.charCodeAt(0))}};
+async function pack(obj){const raw=new TextEncoder().encode(JSON.stringify(obj));
+ if(window.CompressionStream){const cs=new Blob([raw]).stream().pipeThrough(new CompressionStream("deflate-raw"));return "z"+b64u.enc(new Uint8Array(await new Response(cs).arrayBuffer()))}
+ return "j"+b64u.enc(raw)}
+async function unpack(s){const kind=s[0],bytes=b64u.dec(s.slice(1));
+ if(kind==="z"){const ds=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(ds).text())}
+ if(kind==="j")return JSON.parse(new TextDecoder().decode(bytes));throw new Error("bad link")}
+async function docId(p){const h=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(JSON.stringify(p)));return [...new Uint8Array(h)].slice(0,8).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase()}
+function money(n,cur){try{return new Intl.NumberFormat("en",{style:"currency",currency:cur||"USD"}).format(n||0)}catch(e){return(n||0).toFixed(2)}}
+function render(p,acc,id){
+ const v=p.v||{},items=p.items||[],cur=v.cur;const total=items.reduce((s,it)=>s+(+it[1]||0),0);const dep=Math.min(100,Math.max(0,+v.deposit||0));
+ const d=v.date?new Date(v.date+"T12:00").toLocaleDateString("en",{year:"numeric",month:"long",day:"numeric"}):"";
+ $("doc").innerHTML=`<div class="meta">PROPOSAL${d?" · "+esc(d):""} · Document ID ${id}</div><h2>${esc(v.title||"Project proposal")}</h2>
+ <div class="meta">Prepared for <b>${esc(v.client||"Client")}</b> by <b>${esc(v.you||"Freelancer")}</b>${v.email?" · "+esc(v.email):""}</div>
+ ${v.summary?`<h3>Overview</h3><p>${esc(v.summary)}</p>`:""}
+ <h3>Deliverables & investment</h3><table>${items.filter(it=>it[0]||+it[1]).map(it=>`<tr><td>${esc(it[0])}</td><td>${money(+it[1],cur)}</td></tr>`).join("")}
+ <tr class="total"><td>Total</td><td>${money(total,cur)}</td></tr></table>
+ ${dep?`<p class="meta" style="margin-top:6px">${dep}% deposit (${money(total*dep/100,cur)}) to begin · balance ${money(total*(100-dep)/100,cur)} on delivery</p>`:""}
+ ${v.timeline?`<h3>Timeline</h3><p>${esc(v.timeline)}</p>`:""}${v.terms?`<h3>Terms</h3><p>${esc(v.terms)}</p>`:""}
+ <div class="sign"><div>${esc(v.you||"Freelancer")}</div><div>${acc?`<span class="sigline">${esc(acc.n)}</span><br>`:""}${esc(acc?acc.n+(acc.r?", "+acc.r:""):(v.client||"Client"))} — ${acc?"signed "+new Date(acc.t).toLocaleString("en",{dateStyle:"medium",timeStyle:"short"}):"signature & date"}</div></div>`;
+}
+(async()=>{
+ const h=location.hash.slice(1);
+ if(!h){$("doc").outerHTML=`<div class="err"><h2>No proposal in this link</h2><p class="meta">Create one with the free <a href="../">ClientKit proposal generator</a>.</p></div>`;return}
+ let data;try{data=await unpack(h)}catch(e){$("doc").outerHTML=`<div class="err"><h2>This link is incomplete or damaged</h2><p class="meta">Ask the sender to share it again, or copy the full link.</p></div>`;return}
+ const p=data.p||data, acc=data.a||null, id=await docId(p);
+ document.title=(p.v&&p.v.title?p.v.title+" — ":"")+"Proposal | ClientKit";
+ render(p,acc,id);
+ if(acc){$("banner").innerHTML=`<div class="banner"><b>✓ Accepted</b> by ${esc(acc.n)}${acc.r?" ("+esc(acc.r)+")":""} on ${esc(new Date(acc.t).toLocaleString("en",{dateStyle:"long",timeStyle:"short"}))}. Document ID ${id}.</div>`;
+  $("doneBox").hidden=false;$("doneBox").querySelector("strong").textContent="Signed copy";$("doneBox").querySelector(".meta").textContent="Keep this link or download the PDF as your record.";$("mail").hidden=true}
+ else{$("acceptBox").hidden=false;$("toName").textContent=(p.v&&p.v.you)||"the sender"}
+ const upd=()=>$("accept").disabled=!($("signer").value.trim().length>1&&$("agree").checked);
+ $("signer").oninput=upd;$("agree").onchange=upd;
+ $("print1").onclick=$("print2").onclick=()=>window.print();
+ $("accept").onclick=async()=>{
+  const a={n:$("signer").value.trim(),r:$("role").value.trim(),t:new Date().toISOString(),id};
+  const link=location.origin+location.pathname+"#"+await pack({p,a});
+  history.replaceState(null,"","#"+link.split("#")[1]);
+  render(p,a,id);$("acceptBox").hidden=true;$("doneBox").hidden=false;
+  $("banner").innerHTML=`<div class="banner"><b>✓ Accepted</b> by ${esc(a.n)} — send the confirmation below.</div>`;
+  const to=(p.v&&p.v.email)||"";const subj=`Accepted: ${(p.v&&p.v.title)||"proposal"}`;
+  $("mail").href=`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(`Hi,\n\nI've accepted the proposal "${(p.v&&p.v.title)||""}" (Document ID ${id}).\n\nSigned copy: ${link}\n\n${a.n}`)}`;
+  $("copy").onclick=async()=>{try{await navigator.clipboard.writeText(link);$("copied").textContent="Link copied."}catch(e){$("copied").textContent=link}};
+ };
+ if(acc){const link=location.href;$("copy").onclick=async()=>{try{await navigator.clipboard.writeText(link);$("copied").textContent="Link copied."}catch(e){$("copied").textContent=link}}}
+})();
+</script>
+</body>
+</html>

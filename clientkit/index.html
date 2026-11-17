@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Free Freelance Proposal Generator — Printable PDF, No Signup | ClientKit</title>
+<title>Free Freelance Proposal Generator with Online Signing — No Signup | ClientKit</title>
 <meta name="description" content="Create a professional freelance project proposal in 2 minutes. Free, no signup, works offline in your browser. Add scope, pricing, timeline and terms, then download as PDF.">
 <link rel="canonical" href="https://victorferreira196.github.io/clientkit/">
 <meta property="og:title" content="Free Freelance Proposal Generator (PDF, no signup)">
@@ -46,7 +46,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <nav style="max-width:1200px;margin:auto;padding:14px 20px 0;font-size:13px"><a href="./" aria-current="page" style="color:#16181d;font-weight:600;margin-right:14px;text-decoration:none">Proposal generator</a><a href="invoice-generator/" style="color:#5b6170;margin-right:14px;text-decoration:none">Invoice generator</a><a href="rate-calculator/" style="color:#5b6170;text-decoration:none">Rate calculator</a></nav>
 <header>
 <h1>Free Freelance Proposal Generator</h1>
-<p>Fill in the form, watch the proposal build itself, then save it as a PDF. No signup. Nothing is uploaded — it all stays in your browser.</p>
+<p>Fill in the form, watch the proposal build itself, then send your client a link to sign online — or save it as a PDF. No signup. Nothing is uploaded — it all stays in your browser.</p>
 </header>
 <main>
 <section class="panel form" aria-label="Proposal details">
@@ -62,9 +62,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <div><label for="deposit">Upfront deposit %</label><input id="deposit" type="number" min="0" max="100" value="50"></div></div>
 <label for="timeline">Timeline</label><textarea id="timeline" placeholder="Week 1: discovery & wireframes&#10;Week 2–3: design & build&#10;Week 4: review, launch"></textarea>
 <label for="terms">Terms</label><textarea id="terms">Includes 2 rounds of revisions. Additional work billed hourly. Balance due on delivery. This proposal is valid for 30 days.</textarea>
-<div class="actions"><button type="button" id="print">Download PDF</button><button class="ghost" type="button" id="reset">Clear</button></div>
+<div class="actions"><button type="button" id="share" style="background:#1f5eff">Get signing link</button><button type="button" id="print">Download PDF</button><button class="ghost" type="button" id="reset">Clear</button></div>
 </section>
-<article id="doc" aria-live="polite"></article>
+<div><div id="shareBox" class="panel" hidden style="margin-bottom:12px"><strong>Send this link to your client</strong><div style="color:#5b6170;font-size:13px">They can read the proposal, sign it online and send you the signed copy. Nothing is stored on a server — the proposal lives inside the link.</div><input id="shareUrl" readonly style="margin-top:10px"><div class="actions"><button type="button" id="copyShare">Copy link</button><a id="mailShare" class="ghost" style="padding:10px 14px;border-radius:8px;background:#eef0f4;color:#16181d;text-decoration:none" href="#">Email to client</a><a id="openShare" target="_blank" rel="noopener" style="padding:10px 14px;color:#1f5eff">Preview</a></div></div>
+<article id="doc" aria-live="polite"></article></div>
 </main>
 <section class="pro"><div class="panel">
 <div><strong style="font-size:18px">Win more clients with the ClientKit Pro pack</strong><br>
@@ -76,6 +77,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <h3>What should a freelance proposal include?</h3><p>The client's problem, your approach, a clear list of deliverables with prices, a timeline, payment terms (deposit and balance), revision limits and an expiry date.</p>
 <h3>Should I ask for a deposit?</h3><p>Most freelancers ask for 30–50% upfront. It filters out unserious clients and protects you if the project stalls.</p>
 <h3>Is my data private?</h3><p>Yes. The generator runs entirely in your browser and saves a draft only on your own device.</p>
+<h3>Can my client sign it online?</h3><p>Yes. Click “Get signing link” and send it. Your client reviews the proposal, types their name to accept, and sends you back a signed copy with a document ID. No accounts needed on either side.</p>
 <h3>How do I save it as a PDF?</h3><p>Click “Download PDF” and choose “Save as PDF” in the print dialog.</p>
 </section>
 <footer>ClientKit · free tools for freelancers · <a href="invoice-generator/" style="color:inherit">Invoice generator</a> · <a href="rate-calculator/" style="color:inherit">Rate calculator</a></footer>
@@ -124,6 +126,16 @@ $("print").onclick=()=>window.print();
 $("reset").onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){};location.reload()};
 const buy=$("buy");
 if(CHECKOUT_URL){buy.href=CHECKOUT_URL}else{buy.textContent="Pro pack — coming soon";buy.removeAttribute("href");buy.style.opacity=.7}
+async function packShare(obj){const raw=new TextEncoder().encode(JSON.stringify(obj));const enc=u8=>{let s="";u8.forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
+ if(window.CompressionStream){const cs=new Blob([raw]).stream().pipeThrough(new CompressionStream("deflate-raw"));return "z"+enc(new Uint8Array(await new Response(cs).arrayBuffer()))}return "j"+enc(raw)}
+$("share").onclick=async()=>{
+  const v=Object.fromEntries(fields.map(f=>[f,$(f).value]));
+  const url=new URL("p/",location.href).href+"#"+await packShare({v,items:items.filter(it=>it[0]||+it[1])});
+  $("shareUrl").value=url;$("openShare").href=url;$("shareBox").hidden=false;
+  $("mailShare").href="mailto:?subject="+encodeURIComponent("Proposal: "+(v.title||"project"))+"&body="+encodeURIComponent("Hi,\n\nHere's the proposal for "+(v.title||"the project")+". You can review and sign it online:\n"+url+"\n\n"+(v.you||""));
+  $("shareBox").scrollIntoView({behavior:"smooth",block:"nearest"});
+};
+$("copyShare").onclick=async()=>{try{await navigator.clipboard.writeText($("shareUrl").value);$("copyShare").textContent="Copied!"}catch(e){$("shareUrl").select()}};
 load();renderItems();render();
 </script>
 </body>
