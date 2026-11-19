@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Late Payment Fee Calculator for Invoices — Free | ClientKit</title>
+<meta name="description" content="Calculate the late fee or interest on an overdue freelance invoice: monthly %, annual %, or flat fee, with grace period and cap. Get a ready-to-send payment reminder. Free, no signup.">
+<link rel="canonical" href="https://victorferreira196.github.io/clientkit/late-fee-calculator/">
+<meta property="og:title" content="Late Payment Fee Calculator — how much can I add to an overdue invoice?">
+<meta property="og:description" content="Days overdue, late fee and new total — plus a polite reminder email you can copy.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ClientKit Late Payment Fee Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://victorferreira196.github.io/clientkit/late-fee-calculator/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I calculate a late fee on an invoice?","acceptedAnswer":{"@type":"Answer","text":"Count the days the invoice is overdue (minus any grace period), then apply the rate in your contract: a monthly percentage prorated by days, an annual percentage prorated by days, or a flat fee. Add the fee to the unpaid amount to get the new total."}},
+{"@type":"Question","name":"What is a typical late fee for freelancers?","acceptedAnswer":{"@type":"Answer","text":"Many freelancers use 1% to 2% per month on the unpaid balance, or a small flat fee. Whatever you choose, it should be written in your contract or invoice terms before the work starts."}},
+{"@type":"Question","name":"Can I charge a late fee if it was not in my contract?","acceptedAnswer":{"@type":"Answer","text":"It is much harder. Late fees are normally enforceable only when the client agreed to them in advance, and some places set legal maximums or statutory rates. Check the rules where you and your client are based."}},
+{"@type":"Question","name":"Does this calculator store my data?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser. Your inputs are saved only in your own browser so they are still there next time."}}
+]}
+</script>
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff;--warn:#b42318}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+nav{max-width:1100px;margin:auto;padding:14px 20px 0;font-size:13px}nav a{color:var(--muted);margin-right:14px;text-decoration:none;display:inline-block}nav a[aria-current]{color:var(--ink);font-weight:600}
+header{padding:16px 20px 8px;max-width:1100px;margin:auto}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}header p{margin:0;color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:20px;max-width:1100px;margin:16px auto;padding:0 20px}@media(max-width:820px){main{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.big{font-size:40px;font-weight:700;letter-spacing:-.03em;margin:4px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}@media(max-width:480px){.cards{grid-template-columns:1fr}}
+.cards div{background:var(--bg);border-radius:10px;padding:12px}.cards b{display:block;font-size:20px}.cards span{font-size:12px;color:var(--muted)}
+.break td{padding:6px 0;border-bottom:1px solid var(--line)}.break{width:100%;border-collapse:collapse}.break td:last-child{text-align:right}
+.note{color:var(--muted);font-size:13px;margin-top:14px}.warn{color:var(--warn)}
+textarea{min-height:190px;font-size:14px;resize:vertical}
+.btn{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}
+.pro{max-width:1100px;margin:8px auto 30px;padding:0 20px}.pro .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#101828;color:#fff;border:0}
+.pro a{background:var(--accent);color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.faq{max-width:820px;margin:0 auto 40px;padding:0 20px;color:var(--muted)}.faq h2{color:var(--ink);font-size:20px}.faq h3{color:var(--ink);font-size:15px;margin-bottom:2px}.faq a{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<nav><a href="../">Proposal generator</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="./" aria-current="page">Late fee calculator</a></nav>
+<header><h1>Late Payment Fee Calculator</h1><p>How much is an overdue invoice worth today? Enter the amount, due date and your contract's late-fee terms — results and a reminder email update instantly.</p></header>
+<main>
+<section class="panel" aria-label="Inputs">
+<div class="row"><div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>BRL</option><option>INR</option></select></div>
+<div><label for="amount">Unpaid amount</label><input id="amount" type="number" min="0" step="0.01" value="2500"></div></div>
+<div class="row"><div><label for="due">Due date</label><input id="due" type="date"></div>
+<div><label for="asof">Calculate up to</label><input id="asof" type="date"></div></div>
+<label for="type">Late fee terms</label>
+<select id="type">
+<option value="monthly">% per month, prorated daily</option>
+<option value="started">% per month, each started month</option>
+<option value="annual">% per year (APR), prorated daily</option>
+<option value="flat">Flat fee, once</option>
+</select>
+<div class="row"><div><label for="rate" id="ratelabel">Rate %</label><input id="rate" type="number" min="0" step="0.01" value="1.5"></div>
+<div><label for="grace">Grace period (days)</label><input id="grace" type="number" min="0" value="0"></div></div>
+<div class="row"><div><label for="flat">Flat fee</label><input id="flat" type="number" min="0" step="0.01" value="0"></div>
+<div><label for="cap">Cap fee at % of invoice (0 = none)</label><input id="cap" type="number" min="0" step="0.1" value="0"></div></div>
+<div class="row"><div><label for="inv">Invoice #</label><input id="inv" value="INV-001"></div>
+<div><label for="client">Client name</label><input id="client" value="Alex"></div></div>
+<label for="me">Your name</label><input id="me" value="Sam">
+</section>
+<section class="panel" aria-live="polite">
+<div style="color:var(--muted);font-size:13px">New total due</div><div class="big" id="total">—</div>
+<div class="cards"><div><b id="days">—</b><span>Days overdue</span></div><div><b id="charged">—</b><span>Days charged (after grace)</span></div><div><b id="fee">—</b><span>Late fee</span></div></div>
+<table class="break" id="break"></table>
+<p class="note" id="note"></p>
+<label for="email">Payment reminder (edit, then copy)</label>
+<textarea id="email" spellcheck="true"></textarea>
+<button class="btn" id="copy" type="button">Copy reminder</button> <span id="copied" class="note" role="status"></span>
+</section>
+</main>
+<section class="pro"><div class="panel">
+<div><strong style="font-size:18px">Stop chasing payments.</strong><br><span style="opacity:.8">ClientKit Pro: contract with late-fee clause, 3-step payment reminder sequence, scope-change form — 12 templates.</span></div>
+<a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
+<section class="faq"><h2>Late fees on freelance invoices</h2>
+<h3>How do I calculate a late fee on an invoice?</h3><p>Count the days the invoice is overdue (minus any grace period), then apply the rate in your contract: a monthly percentage prorated by days, an annual percentage prorated by days, or a flat fee. Add the fee to the unpaid amount to get the new total.</p>
+<h3>What is a typical late fee for freelancers?</h3><p>Many freelancers use 1%–2% per month on the unpaid balance, or a small flat fee. Whatever you choose, write it into your <a href="../freelance-contract-generator/">contract</a> and your <a href="../invoice-generator/">invoice</a> terms before the work starts.</p>
+<h3>Can I charge a late fee if it was not in my contract?</h3><p>It is much harder. Late fees are normally enforceable only when the client agreed to them in advance, and some places cap interest or set statutory rates (the UK, for example, has a statutory interest scheme for business-to-business invoices). Check the rules where you and your client are based. This calculator is not legal advice.</p>
+<h3>Should I always add the fee?</h3><p>Not necessarily. Many freelancers mention the fee in the first reminder and waive it if the client pays within a few days — it gets you paid without hurting the relationship.</p>
+<h3>Does this calculator store my data?</h3><p>No. Everything runs in your browser. Your inputs are saved only in your own browser so they are still there next time.</p></section>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a></footer>
+<script>
+const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
+const $=id=>document.getElementById(id);const ids=["cur","amount","due","asof","type","rate","grace","flat","cap","inv","client","me"];const KEY="clientkit-latefee-v1";
+const money=n=>{try{return new Intl.NumberFormat("en",{style:"currency",currency:$("cur").value}).format(n)}catch(e){return n.toFixed(2)}};
+const iso=d=>d.toISOString().slice(0,10);
+const parse=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?Date.UTC(+m[1],+m[2]-1,+m[3]):NaN};
+const nice=s=>{const t=parse(s);return isNaN(t)?s:new Date(t).toLocaleDateString("en",{timeZone:"UTC",year:"numeric",month:"long",day:"numeric"})};
+let emailEdited=false;
+function calc(){
+ const g=id=>Math.max(0,+$(id).value||0);
+ const amt=g("amount"), rate=g("rate")/100, type=$("type").value;
+ const d=parse($("due").value), a=parse($("asof").value);
+ const days=(isNaN(d)||isNaN(a))?0:Math.max(0,Math.round((a-d)/864e5));
+ const charged=Math.max(0,days-Math.floor(g("grace")));
+ let fee=0;
+ if(charged>0){
+  if(type==="monthly")fee=amt*rate*charged/30;
+  else if(type==="started")fee=amt*rate*Math.ceil(charged/30);
+  else if(type==="annual")fee=amt*rate*charged/365;
+  fee+=g("flat");
+ }
+ let capped=false;const cap=g("cap");if(cap>0&&fee>amt*cap/100){fee=amt*cap/100;capped=true}
+ fee=Math.round(fee*100)/100;
+ return{amt,days,charged,fee,total:amt+fee,capped,type,valid:!(isNaN(d)||isNaN(a))}
+}
+function render(){
+ const r=calc(),t=r.type;
+ $("ratelabel").textContent=t==="annual"?"Rate % per year":t==="flat"?"Rate % (not used)":"Rate % per month";
+ $("rate").disabled=t==="flat";
+ $("total").textContent=money(r.total);$("days").textContent=r.days;$("charged").textContent=r.charged;$("fee").textContent=money(r.fee);
+ const rule={monthly:`${$("rate").value||0}% per month × ${r.charged}/30 months`,started:`${$("rate").value||0}% × ${Math.ceil(r.charged/30)} started month(s)`,annual:`${$("rate").value||0}% per year × ${r.charged}/365 years`,flat:"flat fee"}[t];
+ $("break").innerHTML=`<tr><td>Unpaid amount</td><td>${money(r.amt)}</td></tr><tr><td>Late fee (${rule}${t!=="flat"&&(+$("flat").value>0)?" + flat fee":""})</td><td>${money(r.fee)}</td></tr><tr><td><b>New total due</b></td><td><b>${money(r.total)}</b></td></tr>`;
+ const n=$("note");n.className="note";
+ if(!r.valid){n.textContent="Enter a due date and a date to calculate up to.";n.classList.add("warn")}
+ else if(r.days===0){n.textContent="This invoice is not overdue yet — no late fee applies."}
+ else if(r.charged===0){n.textContent=`Overdue by ${r.days} day(s), still inside the ${$("grace").value}-day grace period — no fee yet.`}
+ else{n.textContent=`Overdue by ${r.days} day(s) as of ${nice($("asof").value)}.`+(r.capped?" Fee limited by your cap.":"")+" Only charge fees your client agreed to in your contract or invoice terms."}
+ if(!emailEdited)$("email").value=draft(r);
+ try{localStorage.setItem(KEY,JSON.stringify(Object.fromEntries(ids.map(i=>[i,$(i).value]))))}catch(e){}
+}
+function draft(r){
+ const c=$("client").value.trim()||"there",inv=$("inv").value.trim()||"my invoice",me=$("me").value.trim();
+ if(!r.valid||r.days===0)return `Hi ${c},\n\nA friendly reminder that invoice ${inv} for ${money(r.amt)} is due on ${nice($("due").value)}.\n\nThanks!\n${me}`;
+ let s=`Hi ${c},\n\nI hope you're well. Invoice ${inv} for ${money(r.amt)} was due on ${nice($("due").value)} and is now ${r.days} day(s) overdue.\n\n`;
+ if(r.fee>0)s+=`As set out in our agreed payment terms, a late fee of ${money(r.fee)} now applies, bringing the total to ${money(r.total)}. If payment of the original ${money(r.amt)} reaches me within the next 5 business days, I'm happy to waive the fee.\n\n`;
+ else s+=`Could you let me know when I can expect payment?\n\n`;
+ return s+`If it has already been sent, please ignore this message — and thank you.\n\nBest,\n${me}`;
+}
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s)ids.forEach(i=>{if(s[i]!=null)$(i).value=s[i]})}catch(e){}
+if(!$("asof").value)$("asof").value=iso(new Date());
+if(!$("due").value){const d=new Date();d.setDate(d.getDate()-45);$("due").value=iso(d)}
+$("email").addEventListener("input",e=>{emailEdited=true;e.stopPropagation()});
+document.addEventListener("input",render);document.addEventListener("change",e=>{if(e.target.id!=="email")render()});
+$("copy").addEventListener("click",async()=>{const v=$("email").value;try{await navigator.clipboard.writeText(v);$("copied").textContent="Copied."}catch(e){$("email").select();try{document.execCommand("copy");$("copied").textContent="Copied."}catch(_){$("copied").textContent="Select the text and copy it manually."}}});
+document.querySelectorAll(".buy").forEach(b=>{if(CHECKOUT_URL){b.href=CHECKOUT_URL}else{b.textContent="Pro pack — coming soon";b.removeAttribute("href");b.style.opacity=.7}});
+render();
+</script>
+</body>
+</html>
