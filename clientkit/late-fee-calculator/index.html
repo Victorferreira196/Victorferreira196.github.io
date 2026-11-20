@@ -41,7 +41,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a
 </style>
 </head>
 <body>
-<nav><a href="../">Proposal generator</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="./" aria-current="page">Late fee calculator</a></nav>
+<nav><a href="../">Proposal generator</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="./" aria-current="page">Late fee calculator</a><a href="../receipt-generator/">Receipt generator</a></nav>
 <header><h1>Late Payment Fee Calculator</h1><p>How much is an overdue invoice worth today? Enter the amount, due date and your contract's late-fee terms — results and a reminder email update instantly.</p></header>
 <main>
 <section class="panel" aria-label="Inputs">
@@ -78,12 +78,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a
 <div><strong style="font-size:18px">Stop chasing payments.</strong><br><span style="opacity:.8">ClientKit Pro: contract with late-fee clause, 3-step payment reminder sequence, scope-change form — 12 templates.</span></div>
 <a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
 <section class="faq"><h2>Late fees on freelance invoices</h2>
-<h3>How do I calculate a late fee on an invoice?</h3><p>Count the days the invoice is overdue (minus any grace period), then apply the rate in your contract: a monthly percentage prorated by days, an annual percentage prorated by days, or a flat fee. Add the fee to the unpaid amount to get the new total.</p>
+<h3>How do I calculate a late fee on an invoice?</h3><p>Count the days the invoice is overdue (minus any grace period), then apply the rate in your contract: a monthly percentage prorated by days, an annual percentage prorated by days, or a flat fee. Add the fee to the unpaid amount to get the new total. Once the client pays, send them a <a href="../receipt-generator/">payment receipt</a>.</p>
 <h3>What is a typical late fee for freelancers?</h3><p>Many freelancers use 1%–2% per month on the unpaid balance, or a small flat fee. Whatever you choose, write it into your <a href="../freelance-contract-generator/">contract</a> and your <a href="../invoice-generator/">invoice</a> terms before the work starts.</p>
 <h3>Can I charge a late fee if it was not in my contract?</h3><p>It is much harder. Late fees are normally enforceable only when the client agreed to them in advance, and some places cap interest or set statutory rates (the UK, for example, has a statutory interest scheme for business-to-business invoices). Check the rules where you and your client are based. This calculator is not legal advice.</p>
 <h3>Should I always add the fee?</h3><p>Not necessarily. Many freelancers mention the fee in the first reminder and waive it if the client pays within a few days — it gets you paid without hurting the relationship.</p>
 <h3>Does this calculator store my data?</h3><p>No. Everything runs in your browser. Your inputs are saved only in your own browser so they are still there next time.</p></section>
-<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a></footer>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a> · <a href="../receipt-generator/">Receipt generator</a></footer>
 <script>
 const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
 const $=id=>document.getElementById(id);const ids=["cur","amount","due","asof","type","rate","grace","flat","cap","inv","client","me"];const KEY="clientkit-latefee-v1";

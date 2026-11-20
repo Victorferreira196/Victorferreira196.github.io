@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Payment Receipt Generator for Freelancers — Print or PDF | ClientKit</title>
+<meta name="description" content="Create a clean payment receipt for a client in seconds: line items, tax, amount paid, payment method and balance due. Print or save as PDF. Free, no signup, nothing leaves your browser.">
+<link rel="canonical" href="https://victorferreira196.github.io/clientkit/receipt-generator/">
+<meta property="og:title" content="Free Payment Receipt Generator for Freelancers">
+<meta property="og:description" content="Fill in the payment, get a printable receipt marked PAID — or PARTIALLY PAID with the balance due.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ClientKit Payment Receipt Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://victorferreira196.github.io/clientkit/receipt-generator/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the difference between an invoice and a receipt?","acceptedAnswer":{"@type":"Answer","text":"An invoice asks the client to pay. A receipt confirms that a payment was received: it shows the amount paid, the date, the payment method and any balance still due."}},
+{"@type":"Question","name":"What should a payment receipt include?","acceptedAnswer":{"@type":"Answer","text":"Your name or business, the client, a receipt number, the payment date, what was paid for, the amount and currency, tax if any, the payment method and reference, the invoice it relates to, and the remaining balance."}},
+{"@type":"Question","name":"How do I save the receipt as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Print / Save as PDF and choose Save as PDF as the printer. Only the receipt is printed, not the form."}},
+{"@type":"Question","name":"Does this receipt generator store my data?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser and nothing is sent to a server. Your inputs are saved only in your own browser so they are still there next time."}}
+]}
+</script>
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff;--ok:#067647;--warn:#b54708}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+nav{max-width:1100px;margin:auto;padding:14px 20px 0;font-size:13px}nav a{color:var(--muted);margin-right:14px;text-decoration:none;display:inline-block}nav a[aria-current]{color:var(--ink);font-weight:600}
+header{padding:16px 20px 8px;max-width:1100px;margin:auto}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}header p{margin:0;color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:20px;max-width:1100px;margin:16px auto;padding:0 20px}@media(max-width:820px){main{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;min-width:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+textarea{min-height:60px;resize:vertical}
+.item{display:grid;grid-template-columns:1fr 56px 84px 30px;gap:6px;margin-bottom:6px}.item button{border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;color:var(--muted)}
+.btn{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
+.receipt{position:relative;overflow:hidden}.rhead{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.rhead h2{margin:0;font-size:24px;letter-spacing:.08em}.rmeta{font-size:13px;color:var(--muted);text-align:right}.rmeta b{color:var(--ink)}
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;font-size:14px;white-space:pre-line}@media(max-width:480px){.parties{grid-template-columns:1fr}}
+.parties small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+table.lines{width:100%;border-collapse:collapse;font-size:14px}.lines th{text-align:left;font-size:11px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);padding:6px 4px}.lines td{padding:7px 4px;border-bottom:1px solid var(--line);word-break:break-word}.lines .n{text-align:right;white-space:nowrap}
+.tot{margin-left:auto;max-width:300px;font-size:14px;margin-top:10px}.tot div{display:flex;justify-content:space-between;padding:3px 0}.tot .paid{font-weight:700;font-size:16px;border-top:2px solid var(--ink);padding-top:6px;margin-top:4px}
+.stamp{display:inline-block;border:3px solid var(--ok);color:var(--ok);font-weight:800;letter-spacing:.12em;padding:4px 12px;border-radius:6px;transform:rotate(-6deg);margin-top:8px}.stamp.part{border-color:var(--warn);color:var(--warn)}
+.rnotes{font-size:13px;color:var(--muted);margin-top:14px;white-space:pre-line}.rfoot{font-size:11px;color:var(--muted);margin-top:18px;text-align:center}
+.pro{max-width:1100px;margin:8px auto 30px;padding:0 20px}.pro .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#101828;color:#fff;border:0}
+.pro a{background:var(--accent);color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.faq{max-width:820px;margin:0 auto 40px;padding:0 20px;color:var(--muted)}.faq h2{color:var(--ink);font-size:20px}.faq h3{color:var(--ink);font-size:15px;margin-bottom:2px}.faq a{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a{color:var(--muted)}
+@media print{nav,header,.inputs,.pro,.faq,footer,.noprint{display:none!important}body{background:#fff}main{display:block;margin:0;padding:0;max-width:none}.receipt{border:0;padding:0}}
+</style>
+</head>
+<body>
+<nav><a href="../">Proposal generator</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="../late-fee-calculator/">Late fee calculator</a><a href="./" aria-current="page">Receipt generator</a></nav>
+<header><h1>Payment Receipt Generator</h1><p>Your client paid — send them a proper receipt. Fill in the payment and the receipt updates instantly. Print it or save it as a PDF.</p></header>
+<main>
+<section class="panel inputs" aria-label="Inputs">
+<label for="from">From (you / your business)</label><textarea id="from">Sam Rivera Design
+sam@example.com</textarea>
+<label for="to">Received from (client)</label><textarea id="to">Acme Studio Ltd.
+billing@acme.example</textarea>
+<div class="row"><div><label for="num">Receipt #</label><input id="num" value="RCPT-001"></div>
+<div><label for="date">Payment date</label><input id="date" type="date"></div></div>
+<div class="row"><div><label for="inv">For invoice #</label><input id="inv" value="INV-001"></div>
+<div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>BRL</option><option>INR</option></select></div></div>
+<label>Items paid for (description · qty · unit price)</label>
+<div id="items"></div>
+<button class="btn ghost" id="add" type="button">+ Add item</button>
+<div class="row"><div><label for="tax">Tax %</label><input id="tax" type="number" min="0" step="0.01" value="0"></div>
+<div><label for="paid">Amount paid (blank = full)</label><input id="paid" type="number" min="0" step="0.01" placeholder="full amount"></div></div>
+<div class="row"><div><label for="method">Payment method</label><select id="method"><option>Bank transfer</option><option>Credit card</option><option>PayPal</option><option>Wise</option><option>Stripe</option><option>Cash</option><option>Check</option><option>Pix</option><option>Other</option></select></div>
+<div><label for="ref">Transaction ref (optional)</label><input id="ref" value=""></div></div>
+<label for="notes">Note to client</label><textarea id="notes">Thank you for your payment — it was a pleasure working with you.</textarea>
+</section>
+<section class="panel receipt" id="receipt" aria-live="polite">
+<div class="rhead"><div><h2>RECEIPT</h2><div class="stamp" id="stamp">PAID</div></div>
+<div class="rmeta">Receipt # <b id="r-num"></b><br>Date paid: <b id="r-date"></b><br><span id="r-invline">For invoice: <b id="r-inv"></b></span></div></div>
+<div class="parties"><div><small>From</small><span id="r-from"></span></div><div><small>Received from</small><span id="r-to"></span></div></div>
+<table class="lines"><thead><tr><th>Description</th><th class="n">Qty</th><th class="n">Price</th><th class="n">Amount</th></tr></thead><tbody id="r-lines"></tbody></table>
+<div class="tot"><div><span>Subtotal</span><span id="r-sub"></span></div><div id="r-taxrow"><span id="r-taxlabel">Tax</span><span id="r-tax"></span></div><div><span>Total</span><span id="r-total"></span></div>
+<div class="paid"><span>Amount paid</span><span id="r-paid"></span></div><div><span>Balance due</span><span id="r-bal"></span></div></div>
+<p class="rnotes" id="r-method"></p>
+<p class="rnotes" id="r-notes"></p>
+<div class="rfoot">Receipt created with ClientKit · victorferreira196.github.io/clientkit</div>
+<div class="noprint"><button class="btn" id="print" type="button">Print / Save as PDF</button> <button class="btn ghost" id="copy" type="button">Copy as text</button> <span id="copied" class="rnotes" role="status"></span></div>
+</section>
+</main>
+<section class="pro"><div class="panel">
+<div><strong style="font-size:18px">Look pro from proposal to final receipt.</strong><br><span style="opacity:.8">ClientKit Pro: proposal, contract, invoice and payment-reminder templates — 12 ready-to-send documents.</span></div>
+<a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
+<section class="faq"><h2>Payment receipts for freelancers</h2>
+<h3>What is the difference between an invoice and a receipt?</h3><p>An <a href="../invoice-generator/">invoice</a> asks the client to pay. A receipt confirms that a payment was received: it shows the amount paid, the date, the payment method and any balance still due. If the client is paying late, work out any agreed fee first with the <a href="../late-fee-calculator/">late fee calculator</a>.</p>
+<h3>What should a payment receipt include?</h3><p>Your name or business, the client, a receipt number, the payment date, what was paid for, the amount and currency, tax if any, the payment method and reference, the invoice it relates to, and the remaining balance.</p>
+<h3>Can I issue a receipt for a deposit or partial payment?</h3><p>Yes. Enter the amount actually received in “Amount paid”. The receipt is marked PARTIALLY PAID and shows the balance due — useful for the deposit set in your <a href="../freelance-contract-generator/">contract</a> or <a href="../sow-generator/">SOW</a>.</p>
+<h3>How do I save the receipt as a PDF?</h3><p>Click “Print / Save as PDF” and choose “Save as PDF” as the printer. Only the receipt is printed, not the form.</p>
+<h3>Is this a tax document?</h3><p>It is a simple proof of payment. Some countries require specific fields (tax IDs, sequential numbering, official e-invoices). Check local rules — this tool is not tax or legal advice.</p>
+<h3>Does this receipt generator store my data?</h3><p>No. Everything runs in your browser and nothing is sent to a server. Your inputs are saved only in your own browser so they are still there next time.</p></section>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a> · <a href="../late-fee-calculator/">Late fee calculator</a></footer>
+<script>
+const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
+const $=id=>document.getElementById(id);const ids=["from","to","num","date","inv","cur","tax","paid","method","ref","notes"];const KEY="clientkit-receipt-v1";
+const money=n=>{try{return new Intl.NumberFormat("en",{style:"currency",currency:$("cur").value}).format(n)}catch(e){return (+n).toFixed(2)}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const r2=n=>Math.round(n*100)/100;
+const nice=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?new Date(Date.UTC(+m[1],+m[2]-1,+m[3])).toLocaleDateString("en",{timeZone:"UTC",year:"numeric",month:"long",day:"numeric"}):"—"};
+function addItem(d="",q=1,p=0){const w=document.createElement("div");w.className="item";w.innerHTML=`<input aria-label="Description" class="d"><input aria-label="Quantity" class="q" type="number" min="0" step="any"><input aria-label="Unit price" class="p" type="number" min="0" step="0.01"><button type="button" aria-label="Remove item">×</button>`;w.querySelector(".d").value=d;w.querySelector(".q").value=q;w.querySelector(".p").value=p;w.querySelector("button").onclick=()=>{w.remove();render()};$("items").appendChild(w)}
+function items(){return[...document.querySelectorAll("#items .item")].map(w=>({d:w.querySelector(".d").value.trim(),q:Math.max(0,+w.querySelector(".q").value||0),p:Math.max(0,+w.querySelector(".p").value||0)})).filter(i=>i.d||i.q*i.p>0)}
+function calc(){const it=items();const sub=r2(it.reduce((s,i)=>s+r2(i.q*i.p),0));const taxp=Math.max(0,+$("tax").value||0);const tax=r2(sub*taxp/100);const total=r2(sub+tax);
+ const pv=$("paid").value.trim();const paid=pv===""?total:r2(Math.max(0,+pv||0));const bal=r2(Math.max(0,total-paid));return{it,sub,taxp,tax,total,paid,bal,over:r2(paid-total)}}
+function render(){const c=calc();
+ $("r-num").textContent=$("num").value||"—";$("r-date").textContent=nice($("date").value);$("r-inv").textContent=$("inv").value;$("r-invline").style.display=$("inv").value.trim()?"":"none";
+ $("r-from").textContent=$("from").value;$("r-to").textContent=$("to").value;
+ $("r-lines").innerHTML=c.it.length?c.it.map(i=>`<tr><td>${esc(i.d||"Item")}</td><td class="n">${i.q}</td><td class="n">${money(i.p)}</td><td class="n">${money(r2(i.q*i.p))}</td></tr>`).join(""):`<tr><td colspan="4" style="color:var(--muted)">Add at least one item.</td></tr>`;
+ $("r-sub").textContent=money(c.sub);$("r-taxrow").style.display=c.taxp>0?"":"none";$("r-taxlabel").textContent=`Tax (${c.taxp}%)`;$("r-tax").textContent=money(c.tax);$("r-total").textContent=money(c.total);
+ $("r-paid").textContent=money(c.paid);$("r-bal").textContent=money(c.bal);
+ const st=$("stamp");if(c.paid<=0){st.textContent="UNPAID";st.className="stamp part"}else if(c.bal>0){st.textContent="PARTIALLY PAID";st.className="stamp part"}else{st.textContent="PAID IN FULL";st.className="stamp"}
+ const ref=$("ref").value.trim();$("r-method").textContent=`Paid by ${$("method").value}${ref?` · Ref: ${ref}`:""}${c.over>0?` · Overpayment of ${money(c.over)} will be credited.`:""}`;
+ $("r-notes").textContent=$("notes").value;
+ try{localStorage.setItem(KEY,JSON.stringify({...Object.fromEntries(ids.map(i=>[i,$(i).value])),items:c.it}))}catch(e){}
+}
+function asText(){const c=calc();const L=[`RECEIPT ${$("num").value} — ${st()}`,`Date paid: ${nice($("date").value)}`];if($("inv").value.trim())L.push(`For invoice: ${$("inv").value}`);L.push("",`From: ${$("from").value.replace(/\n/g,", ")}`,`Received from: ${$("to").value.replace(/\n/g,", ")}`,"");c.it.forEach(i=>L.push(`- ${i.d||"Item"}: ${i.q} × ${money(i.p)} = ${money(r2(i.q*i.p))}`));L.push("",`Subtotal: ${money(c.sub)}`);if(c.taxp>0)L.push(`Tax (${c.taxp}%): ${money(c.tax)}`);L.push(`Total: ${money(c.total)}`,`Amount paid: ${money(c.paid)}`,`Balance due: ${money(c.bal)}`,$("r-method").textContent);if($("notes").value.trim())L.push("",$("notes").value);return L.join("\n")}
+const st=()=>$("stamp").textContent;
+let saved=null;try{saved=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+if(saved){ids.forEach(i=>{if(saved[i]!=null)$(i).value=saved[i]});(saved.items&&saved.items.length?saved.items:[{d:"",q:1,p:0}]).forEach(i=>addItem(i.d,i.q,i.p))}
+else{addItem("Website redesign — milestone 2",1,1800);addItem("Extra revision round",2,150)}
+if(!$("date").value)$("date").value=new Date().toISOString().slice(0,10);
+$("add").onclick=()=>{addItem();render()};
+document.addEventListener("input",render);document.addEventListener("change",render);
+$("print").onclick=()=>window.print();
+$("copy").onclick=async()=>{const v=asText();try{await navigator.clipboard.writeText(v);$("copied").textContent="Copied."}catch(e){$("copied").textContent="Copy failed — select the receipt and copy it manually."}};
+document.querySelectorAll(".buy").forEach(b=>{if(CHECKOUT_URL){b.href=CHECKOUT_URL}else{b.textContent="Pro pack — coming soon";b.removeAttribute("href");b.style.opacity=.7}});
+render();
+</script>
+</body>
+</html>
