@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Project Quote Calculator — Estimate a Fixed Price | ClientKit</title>
+<meta name="description" content="Turn tasks and hours into a fixed project price: hourly rate, expenses, contingency buffer, discount, tax and deposit — plus a copy-ready quote for your client. Free, no signup.">
+<link rel="canonical" href="https://victorferreira196.github.io/clientkit/project-quote-calculator/">
+<meta property="og:title" content="Freelance Project Quote Calculator — what should I charge for this project?">
+<meta property="og:description" content="Tasks × hours × rate + buffer + expenses = a fixed quote, deposit and payment schedule.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ClientKit Project Quote Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://victorferreira196.github.io/clientkit/project-quote-calculator/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I calculate a fixed price for a freelance project?","acceptedAnswer":{"@type":"Answer","text":"Break the project into tasks, estimate the hours for each, multiply by your hourly rate, add a contingency buffer for the unknowns, add pass-through expenses, then apply any discount and tax. The result is your fixed quote."}},
+{"@type":"Question","name":"How much contingency buffer should I add to a quote?","acceptedAnswer":{"@type":"Answer","text":"Many freelancers add 10% to 25% on top of the estimated hours. Use the lower end for work you have done many times and the higher end for new clients, vague briefs or new technology."}},
+{"@type":"Question","name":"How big should the deposit be?","acceptedAnswer":{"@type":"Answer","text":"A deposit of 30% to 50% before work starts is common for freelance projects. It confirms the client is committed and covers your time if the project is cancelled."}},
+{"@type":"Question","name":"Does this calculator store my data?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser and nothing is sent anywhere. Your inputs are saved only in your own browser so they are still there next time."}}
+]}
+</script>
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff;--warn:#b42318}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+nav{max-width:1100px;margin:auto;padding:14px 20px 0;font-size:13px}nav a{color:var(--muted);margin-right:14px;text-decoration:none;display:inline-block}nav a[aria-current]{color:var(--ink);font-weight:600}
+header{padding:16px 20px 8px;max-width:1100px;margin:auto}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}header p{margin:0;color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(300px,460px) 1fr;gap:20px;max-width:1100px;margin:16px auto;padding:0 20px}@media(max-width:820px){main{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;min-width:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tasks .t{display:grid;grid-template-columns:1fr 70px 32px;gap:6px;margin-bottom:6px}.tasks .t button{border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;color:var(--muted)}
+.add{background:none;border:1px dashed var(--line);border-radius:8px;padding:8px;width:100%;cursor:pointer;color:var(--accent);font:inherit;font-weight:600}
+.big{font-size:40px;font-weight:700;letter-spacing:-.03em;margin:4px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}@media(max-width:480px){.cards{grid-template-columns:1fr}}
+.cards div{background:var(--bg);border-radius:10px;padding:12px}.cards b{display:block;font-size:20px}.cards span{font-size:12px;color:var(--muted)}
+.break td{padding:6px 0;border-bottom:1px solid var(--line);vertical-align:top}.break{width:100%;border-collapse:collapse}.break td:last-child{text-align:right;white-space:nowrap;padding-left:10px}
+.note{color:var(--muted);font-size:13px;margin-top:14px}.warn{color:var(--warn)}
+textarea{min-height:230px;font-size:14px;resize:vertical}
+.btn{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}
+.pro{max-width:1100px;margin:8px auto 30px;padding:0 20px}.pro .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#101828;color:#fff;border:0}
+.pro a{background:var(--accent);color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.faq{max-width:820px;margin:0 auto 40px;padding:0 20px;color:var(--muted)}.faq h2{color:var(--ink);font-size:20px}.faq h3{color:var(--ink);font-size:15px;margin-bottom:2px}.faq a{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<nav><a href="../">Proposal generator</a><a href="../web-design-proposal/">Web design proposal</a><a href="../social-media-proposal/">Social media proposal</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="./" aria-current="page">Project quote calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="../late-fee-calculator/">Late fee calculator</a><a href="../receipt-generator/">Receipt generator</a></nav>
+<header><h1>Freelance Project Quote Calculator</h1><p>What should you charge for this project? List the tasks and hours, add your rate, buffer and expenses — get a fixed price, deposit and a quote you can send.</p></header>
+<main>
+<section class="panel" aria-label="Inputs">
+<div class="row"><div><label for="project">Project</label><input id="project" value="Website redesign"></div>
+<div><label for="client">Client</label><input id="client" value="Acme Co."></div></div>
+<div class="row"><div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>BRL</option><option>INR</option></select></div>
+<div><label for="rate">Hourly rate</label><input id="rate" type="number" min="0" step="1" value="60"></div></div>
+<label>Tasks &amp; estimated hours</label>
+<div class="tasks" id="tasks"></div>
+<button class="add" id="addtask" type="button">+ Add task</button>
+<div class="row"><div><label for="buffer">Contingency buffer %</label><input id="buffer" type="number" min="0" step="1" value="15"></div>
+<div><label for="expenses">Expenses (fonts, stock, software)</label><input id="expenses" type="number" min="0" step="0.01" value="120"></div></div>
+<div class="row"><div><label for="discount">Discount %</label><input id="discount" type="number" min="0" max="100" step="1" value="0"></div>
+<div><label for="tax">Tax / VAT %</label><input id="tax" type="number" min="0" step="0.1" value="0"></div></div>
+<div class="row"><div><label for="deposit">Deposit %</label><input id="deposit" type="number" min="0" max="100" step="1" value="50"></div>
+<div><label for="round">Round total to</label><select id="round"><option value="0">No rounding</option><option value="10">Nearest 10</option><option value="50" selected>Nearest 50</option><option value="100">Nearest 100</option></select></div></div>
+<div class="row"><div><label for="weekly">Hours you can work per week</label><input id="weekly" type="number" min="1" step="1" value="20"></div>
+<div><label for="me">Your name</label><input id="me" value="Sam"></div></div>
+</section>
+<section class="panel" aria-live="polite">
+<div style="color:var(--muted);font-size:13px">Fixed project price</div><div class="big" id="total">—</div>
+<div class="cards"><div><b id="hours">—</b><span>Billable hours (incl. buffer)</span></div><div><b id="depositv">—</b><span>Deposit to start</span></div><div><b id="weeks">—</b><span>Estimated timeline</span></div></div>
+<table class="break" id="break"></table>
+<p class="note" id="note"></p>
+<label for="quote">Quote for your client (edit, then copy)</label>
+<textarea id="quote" spellcheck="true"></textarea>
+<button class="btn" id="copy" type="button">Copy quote</button> <span id="copied" class="note" role="status"></span>
+</section>
+</main>
+<section class="pro"><div class="panel">
+<div><strong style="font-size:18px">Quote accepted? Lock it in.</strong><br><span style="opacity:.8">ClientKit Pro: proposal, contract, deposit invoice, scope-change form and payment reminders — 12 templates.</span></div>
+<a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
+<section class="faq"><h2>Pricing a freelance project</h2>
+<h3>How do I calculate a fixed price for a freelance project?</h3><p>Break the project into tasks, estimate the hours for each, multiply by your hourly rate, add a contingency buffer for the unknowns, add pass-through expenses, then apply any discount and tax. Not sure what your hourly rate should be? Work it out first with the <a href="../rate-calculator/">hourly rate calculator</a>.</p>
+<h3>How much contingency buffer should I add to a quote?</h3><p>Many freelancers add 10%–25% on top of the estimated hours. Use the lower end for work you have done many times and the higher end for new clients, vague briefs or new technology. Writing a clear <a href="../sow-generator/">statement of work</a> keeps the scope from growing past your buffer.</p>
+<h3>How big should the deposit be?</h3><p>A deposit of 30%–50% before work starts is common. It confirms the client is committed and covers your time if the project is cancelled. Put it in your <a href="../freelance-contract-generator/">contract</a>, send a <a href="../invoice-generator/">deposit invoice</a>, and if the final payment is late, use the <a href="../late-fee-calculator/">late fee calculator</a>.</p>
+<h3>Should I show the client my hours?</h3><p>Not necessarily. Many freelancers send only the fixed price and the deliverables, so the client buys an outcome instead of counting hours. The quote text below hides your hourly rate by default — turn your estimate into a full <a href="../">proposal</a> (or a <a href="../web-design-proposal/">web design proposal</a>) when you are ready.</p>
+<h3>Does this calculator store my data?</h3><p>No. Everything runs in your browser and nothing is sent anywhere. Your inputs are saved only in your own browser so they are still there next time.</p></section>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a> · <a href="../late-fee-calculator/">Late fee calculator</a> · <a href="../receipt-generator/">Receipt generator</a> · <a href="../web-design-proposal/">Web design proposal</a> · <a href="../social-media-proposal/">Social media proposal</a></footer>
+<script>
+const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
+const $=id=>document.getElementById(id);const ids=["project","client","cur","rate","buffer","expenses","discount","tax","deposit","round","weekly","me"];const KEY="clientkit-quote-v1";
+const DEFAULT_TASKS=[["Discovery & planning",6],["Design",16],["Build",24],["Revisions & launch",8]];
+let tasks=DEFAULT_TASKS.map(t=>t.slice());
+const money=n=>{try{return new Intl.NumberFormat("en",{style:"currency",currency:$("cur").value}).format(n)}catch(e){return n.toFixed(2)}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const r2=n=>Math.round(n*100)/100;
+let quoteEdited=false;
+function drawTasks(){
+ $("tasks").innerHTML=tasks.map((t,i)=>`<div class="t"><input aria-label="Task ${i+1} name" data-i="${i}" data-k="0" value="${esc(t[0])}"><input aria-label="Task ${i+1} hours" type="number" min="0" step="0.5" data-i="${i}" data-k="1" value="${esc(t[1])}"><button type="button" data-del="${i}" aria-label="Remove task ${i+1}">×</button></div>`).join("");
+}
+function calc(){
+ const g=id=>Math.max(0,+$(id).value||0);
+ const rate=g("rate"),list=tasks.filter(t=>String(t[0]).trim()||(+t[1]>0)).map(t=>({name:String(t[0]).trim()||"Task",h:Math.max(0,+t[1]||0)}));
+ const base=list.reduce((s,t)=>s+t.h,0),bufPct=g("buffer"),bufH=base*bufPct/100,hours=base+bufH;
+ const labour=r2(hours*rate),exp=r2(g("expenses")),sub=labour+exp;
+ const discPct=Math.min(100,g("discount")),disc=r2(sub*discPct/100),after=sub-disc;
+ const taxPct=g("tax"),tax=r2(after*taxPct/100);let total=r2(after+tax);
+ const step=+$("round").value,raw=total;if(step>0&&total>0)total=Math.round(total/step)*step;
+ const dep=r2(total*Math.min(100,g("deposit"))/100);
+ const weeks=hours>0?Math.ceil(hours/Math.max(1,g("weekly"))):0;
+ const eff=hours>0?(total-tax-exp)/hours:0;
+ return{list,rate,base,bufPct,bufH,hours,labour,exp,discPct,disc,taxPct,tax,raw,total,dep,depPct:Math.min(100,g("deposit")),rest:r2(total-dep),weeks,eff,rounded:total-raw}
+}
+const fh=n=>(Math.round(n*10)/10).toString();
+function render(){
+ const r=calc();
+ $("total").textContent=money(r.total);$("hours").textContent=fh(r.hours)+" h";$("depositv").textContent=money(r.dep);$("weeks").textContent=r.weeks+(r.weeks===1?" week":" weeks");
+ let rows=r.list.map(t=>`<tr><td>${esc(t.name)} — ${fh(t.h)} h × ${money(r.rate)}</td><td>${money(t.h*r.rate)}</td></tr>`).join("");
+ if(r.bufH>0)rows+=`<tr><td>Contingency buffer ${r.bufPct}% — ${fh(r.bufH)} h</td><td>${money(r.bufH*r.rate)}</td></tr>`;
+ if(r.exp>0)rows+=`<tr><td>Expenses</td><td>${money(r.exp)}</td></tr>`;
+ if(r.disc>0)rows+=`<tr><td>Discount ${r.discPct}%</td><td>−${money(r.disc)}</td></tr>`;
+ if(r.tax>0)rows+=`<tr><td>Tax / VAT ${r.taxPct}%</td><td>${money(r.tax)}</td></tr>`;
+ if(Math.abs(r.rounded)>=0.005)rows+=`<tr><td>Rounding</td><td>${r.rounded<0?"−":"+"}${money(Math.abs(r.rounded))}</td></tr>`;
+ rows+=`<tr><td><b>Fixed project price</b></td><td><b>${money(r.total)}</b></td></tr><tr><td>Deposit ${r.depPct}% (before work starts)</td><td>${money(r.dep)}</td></tr><tr><td>Balance on completion</td><td>${money(r.rest)}</td></tr>`;
+ $("break").innerHTML=rows;
+ const n=$("note");n.className="note";
+ if(!r.list.length||r.base===0){n.textContent="Add at least one task with estimated hours.";n.classList.add("warn")}
+ else if(r.rate===0){n.textContent="Enter your hourly rate.";n.classList.add("warn")}
+ else n.textContent=`Effective rate after discount and rounding: ${money(r.eff)}/h on ${fh(r.hours)} billable hours (${fh(r.base)} estimated + buffer).`+(r.eff<r.rate*0.9?" That is well below your hourly rate — consider a smaller discount.":"");
+ if(!quoteEdited)$("quote").value=draft(r);
+ try{localStorage.setItem(KEY,JSON.stringify({v:Object.fromEntries(ids.map(i=>[i,$(i).value])),tasks}))}catch(e){}
+}
+function draft(r){
+ const c=$("client").value.trim()||"there",p=$("project").value.trim()||"the project",me=$("me").value.trim();
+ let s=`Hi ${c},\n\nThanks for the brief. Here is my quote for ${p}.\n\nScope:\n`+r.list.map(t=>`- ${t.name}`).join("\n");
+ s+=`\n\nFixed price: ${money(r.total)}`+(r.tax>0?` (incl. ${r.taxPct}% tax)`:"")+(r.exp>0?`, including ${money(r.exp)} in expenses`:"")+`.\n`;
+ s+=`Payment: ${money(r.dep)} deposit (${r.depPct}%) to start, ${money(r.rest)} on completion.\n`;
+ if(r.weeks>0)s+=`Timeline: about ${r.weeks} week${r.weeks===1?"":"s"} from the deposit.\n`;
+ s+=`\nAnything outside the scope above is quoted separately before I start it. This quote is valid for 30 days.\n\nIf this works for you, reply "approved" and I'll send the contract and deposit invoice.\n\nBest,\n${me}`;
+ return s;
+}
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s){if(s.v)ids.forEach(i=>{if(s.v[i]!=null)$(i).value=s.v[i]});if(Array.isArray(s.tasks))tasks=s.tasks}}catch(e){}
+drawTasks();
+$("tasks").addEventListener("input",e=>{const i=e.target.dataset.i;if(i!=null){tasks[+i][+e.target.dataset.k]=e.target.value}});
+$("tasks").addEventListener("click",e=>{const d=e.target.dataset.del;if(d!=null){tasks.splice(+d,1);drawTasks();render()}});
+$("addtask").addEventListener("click",()=>{tasks.push(["",0]);drawTasks();render();const ins=$("tasks").querySelectorAll("input");ins[ins.length-2].focus()});
+$("quote").addEventListener("input",e=>{quoteEdited=true;e.stopPropagation()});
+document.addEventListener("input",render);document.addEventListener("change",e=>{if(e.target.id!=="quote")render()});
+$("copy").addEventListener("click",async()=>{const v=$("quote").value;try{await navigator.clipboard.writeText(v);$("copied").textContent="Copied."}catch(e){$("quote").select();try{document.execCommand("copy");$("copied").textContent="Copied."}catch(_){$("copied").textContent="Select the text and copy it manually."}}});
+document.querySelectorAll(".buy").forEach(b=>{if(CHECKOUT_URL){b.href=CHECKOUT_URL}else{b.textContent="Pro pack — coming soon";b.removeAttribute("href");b.style.opacity=.7}});
+render();
+</script>
+</body>
+</html>
