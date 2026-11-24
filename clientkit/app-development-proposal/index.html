@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free App &amp; Software Development Proposal Template &amp; Generator | ClientKit</title>
+<meta name="description" content="Write a software or app development proposal in minutes: pick features, estimate hours, add QA and project management, set milestones, payment schedule and a bug-fix warranty. Print or save as PDF. Free, no signup, nothing leaves your browser.">
+<link rel="canonical" href="https://victorferreira196.github.io/clientkit/app-development-proposal/">
+<meta property="og:title" content="Free App & Software Development Proposal Generator">
+<meta property="og:description" content="Pick features and hours — get a priced development proposal with milestones, payment schedule and warranty.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ClientKit App Development Proposal Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://victorferreira196.github.io/clientkit/app-development-proposal/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What should a software development proposal include?","acceptedAnswer":{"@type":"Answer","text":"The client's goal, the tech stack, a feature list with estimated effort, what is out of scope, milestones with dates, the price broken down, a payment schedule tied to milestones, a bug-fix warranty period, optional ongoing support, and a clear next step to accept."}},
+{"@type":"Question","name":"How do I estimate the price of an app?","acceptedAnswer":{"@type":"Answer","text":"List every feature, estimate the hours for each, add a percentage for project management and QA (often 15–25%), multiply by your hourly rate and round. Showing hours per feature makes it easy for the client to remove features to fit a budget."}},
+{"@type":"Question","name":"How should payments be split on a development project?","acceptedAnswer":{"@type":"Answer","text":"A common split is a deposit of 25–50% at signing and the rest across milestones such as beta delivery and launch, so you are never far ahead of what you have been paid."}},
+{"@type":"Question","name":"Does this proposal generator store my data?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser and nothing is sent to a server. Your inputs are saved only in your own browser so they are still there next time."}}
+]}
+</script>
+<style>
+:root{--ink:#16181d;--muted:#5b6170;--line:#e3e5ea;--bg:#f6f7f9;--accent:#1f5eff}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+nav{max-width:1100px;margin:auto;padding:14px 20px 0;font-size:13px}nav a{color:var(--muted);margin-right:14px;text-decoration:none;display:inline-block}nav a[aria-current]{color:var(--ink);font-weight:600}
+header{padding:16px 20px 8px;max-width:1100px;margin:auto}h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}header p{margin:0;color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:20px;max-width:1100px;margin:16px auto;padding:0 20px}@media(max-width:820px){main{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;min-width:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+textarea{min-height:60px;resize:vertical}
+.addon{display:grid;grid-template-columns:22px 1fr 90px;gap:8px;align-items:center;margin-bottom:6px;font-size:14px}.addon input[type=checkbox]{width:18px;height:18px;padding:0}
+.btn{background:var(--accent);color:#fff;border:0;padding:10px 16px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
+.doc h2{margin:0;font-size:24px;letter-spacing:-.01em}.doc h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.doc p,.doc li{font-size:14px}.doc ul{padding-left:18px;margin:4px 0}.meta{font-size:13px;color:var(--muted)}
+table.lines{width:100%;border-collapse:collapse;font-size:14px}.lines td{padding:6px 4px;border-bottom:1px solid var(--line);word-break:break-word}.lines .n{text-align:right;white-space:nowrap}#d-time .n{white-space:normal}.lines tr.total td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
+.rfoot{font-size:11px;color:var(--muted);margin-top:18px;text-align:center}.status{font-size:13px;color:var(--muted)}
+.pro{max-width:1100px;margin:8px auto 30px;padding:0 20px}.pro .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#101828;color:#fff;border:0}
+.pro a{background:var(--accent);color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.faq{max-width:820px;margin:0 auto 40px;padding:0 20px;color:var(--muted)}.faq h2{color:var(--ink);font-size:20px}.faq h3{color:var(--ink);font-size:15px;margin-bottom:2px}.faq a{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}footer a{color:var(--muted)}
+@media print{nav,header,.inputs,.pro,.faq,footer,.noprint{display:none!important}body{background:#fff}main{display:block;margin:0;padding:0;max-width:none}.doc{border:0;padding:0}}
+</style>
+<style>.feat{grid-template-columns:22px 1fr 70px}.hint{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
+</head>
+<body>
+<nav><a href="../">Proposal generator</a><a href="../web-design-proposal/">Web design proposal</a><a href="./" aria-current="page">App development proposal</a><a href="../social-media-proposal/">Social media proposal</a><a href="../invoice-generator/">Invoice generator</a><a href="../rate-calculator/">Rate calculator</a><a href="../project-quote-calculator/">Project quote calculator</a><a href="../sow-generator/">SOW generator</a><a href="../freelance-contract-generator/">Contract generator</a><a href="../late-fee-calculator/">Late fee calculator</a><a href="../receipt-generator/">Receipt generator</a></nav>
+<header><h1>App &amp; Software Development Proposal Generator</h1><p>Pick the features and hours. Get a priced development proposal with tech stack, milestones, payment schedule and bug-fix warranty — ready to print or paste into an email.</p></header>
+<main>
+<section class="panel inputs" aria-label="Inputs">
+<div class="row"><div><label for="me">Your name / studio</label><input id="me" value="Alex Kim Dev"></div>
+<div><label for="client">Client</label><input id="client" value="FitTrack Ltd"></div></div>
+<label for="goal">Client goal (one or two lines)</label><textarea id="goal">Launch a mobile app where gym members book classes and track workouts, replacing paper sign-up sheets.</textarea>
+<div class="row"><div><label for="type">Project type</label><select id="type">
+<option value="mobile" selected>Mobile app (iOS + Android)</option>
+<option value="web">Web app / SaaS</option>
+<option value="mvp">MVP / prototype</option>
+<option value="api">API / integration</option>
+<option value="internal">Internal tool / dashboard</option></select></div>
+<div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>BRL</option><option>INR</option></select></div></div>
+<div class="row"><div><label for="stack">Tech stack</label><input id="stack" value="React Native, Node.js, PostgreSQL"></div>
+<div><label for="rate">Hourly rate</label><input id="rate" type="number" min="0" step="1" value="75"></div></div>
+<label>Features (tick to include · hours)</label>
+<div id="feats"></div>
+<div class="row"><div><label for="pm">Project management + QA %</label><input id="pm" type="number" min="0" max="100" step="1" value="20"></div>
+<div><label for="hpw">Hours per week</label><input id="hpw" type="number" min="1" step="1" value="30"></div></div>
+<div class="row"><div><label for="dep">Deposit %</label><input id="dep" type="number" min="0" max="100" step="1" value="30"></div>
+<div><label for="warranty">Bug-fix warranty (days)</label><input id="warranty" type="number" min="0" step="1" value="30"></div></div>
+<div class="row"><div><label for="support">Support / month (0 = none)</label><input id="support" type="number" min="0" step="1" value="400"></div>
+<div><label for="valid">Proposal valid (days)</label><input id="valid" type="number" min="1" step="1" value="14"></div></div>
+<div class="row"><div><label for="round">Round total to</label><select id="round"><option value="1">No rounding</option><option value="50">50</option><option value="100" selected>100</option><option value="500">500</option></select></div>
+<div><label for="start">Proposed start</label><input id="start" type="date"></div></div>
+<p class="hint" id="warn" role="status"></p>
+</section>
+<section class="panel doc" id="doc" aria-live="polite">
+<h2 id="d-title"></h2>
+<div class="meta" id="d-meta"></div>
+<h3>Goal</h3><p id="d-goal"></p>
+<h3>Approach &amp; tech stack</h3><p id="d-stack"></p>
+<h3>Features in scope</h3><table class="lines"><tbody id="d-feat"></tbody></table>
+<h3>Not included</h3><ul id="d-out"></ul>
+<h3>Milestones</h3><table class="lines"><tbody id="d-time"></tbody></table>
+<h3>Investment</h3><table class="lines"><tbody id="d-price"></tbody></table>
+<p id="d-support"></p>
+<h3>Payment schedule</h3><ul id="d-pay"></ul>
+<h3>Warranty &amp; ownership</h3><p id="d-warr"></p>
+<h3>Next step</h3><p id="d-next"></p>
+<div class="rfoot">Proposal created with ClientKit · victorferreira196.github.io/clientkit</div>
+<div class="noprint"><button class="btn" id="print" type="button">Print / Save as PDF</button> <button class="btn ghost" id="copy" type="button">Copy as text</button> <span id="copied" class="status" role="status"></span></div>
+</section>
+</main>
+<section class="pro"><div class="panel">
+<div><strong style="font-size:18px">Win the project, then get paid on time.</strong><br><span style="opacity:.8">ClientKit Pro: proposal, contract, invoice and payment-reminder templates — 12 ready-to-send documents.</span></div>
+<a class="buy" href="#" rel="noopener">Get Pro — $19</a></div></section>
+<section class="faq"><h2>Development proposals that get signed</h2>
+<h3>What should a software development proposal include?</h3><p>The client’s goal, the tech stack, a feature list with estimated effort, what is out of scope, milestones with dates, the price broken down, a payment schedule tied to milestones, a bug-fix warranty and one clear next step. For a general proposal for any service, use the <a href="../">proposal generator</a>; for websites, the <a href="../web-design-proposal/">web design proposal</a>.</p>
+<h3>How do I estimate the price of an app?</h3><p>List every feature, estimate hours for each, add 15–25% for project management and QA, multiply by your hourly rate and round. Not sure what rate to use? Try the <a href="../rate-calculator/">hourly rate calculator</a>. For a quick fixed-price number with contingency buffer, use the <a href="../project-quote-calculator/">project quote calculator</a>.</p>
+<h3>Why show hours per feature?</h3><p>When the budget is tight, the client can drop features instead of asking you to cut your rate. Untick a feature here and the price, milestones and timeline update instantly.</p>
+<h3>How should payments be split on a development project?</h3><p>A deposit of 25–50% at signing and the rest across milestones (beta delivery, launch) keeps you from working far ahead of payment. Put it in a <a href="../freelance-contract-generator/">freelance contract</a> or a detailed <a href="../sow-generator/">statement of work</a>, invoice each milestone with the <a href="../invoice-generator/">invoice generator</a>, and use the <a href="../late-fee-calculator/">late fee calculator</a> if a payment slips.</p>
+<h3>What is a bug-fix warranty?</h3><p>A fixed period after launch (often 30–90 days) in which you fix defects in the delivered features at no charge. New features and changes are not bugs — those go into a new quote or the monthly support plan.</p>
+<h3>Does this proposal generator store my data?</h3><p>No. Everything runs in your browser and nothing is sent to a server. Your inputs are saved only in your own browser so they are still there next time.</p></section>
+<footer>ClientKit · free tools for freelancers · <a href="../">Proposal generator</a> · <a href="../invoice-generator/">Invoice generator</a> · <a href="../rate-calculator/">Rate calculator</a> · <a href="../sow-generator/">SOW generator</a> · <a href="../freelance-contract-generator/">Contract generator</a> · <a href="../late-fee-calculator/">Late fee calculator</a> · <a href="../receipt-generator/">Receipt generator</a> · <a href="../web-design-proposal/">Web design proposal</a> · <a href="../social-media-proposal/">Social media proposal</a> · <a href="../project-quote-calculator/">Project quote calculator</a></footer>
+<script>
+const CHECKOUT_URL = ""; // set to the Gumroad / Lemon Squeezy product URL once the store exists
+const $=id=>document.getElementById(id);const KEY="clientkit-appproposal-v1";
+const ids=["me","client","goal","type","cur","stack","rate","pm","hpw","dep","warranty","support","valid","round","start"];
+const FEATS=[["auth","User sign-up, login and password reset",24,true],["profile","User profiles and settings",12,true],["core","Core feature: class booking with calendar",60,true],["dash","Dashboard / activity tracking",40,true],["push","Push / email notifications",16,true],["admin","Admin panel to manage content and users",32,true],["pay","Payments and subscriptions (Stripe)",28,false],["chat","In-app messaging",36,false],["api","Third-party API integration",20,false],["store","App Store / Play Store submission",8,true]];
+const STACK={mobile:"React Native, Node.js, PostgreSQL",web:"React, Node.js, PostgreSQL",mvp:"Next.js, Supabase",api:"Node.js, REST/JSON, PostgreSQL",internal:"React, Python, PostgreSQL"};
+const money=n=>{try{return new Intl.NumberFormat("en",{style:"currency",currency:$("cur").value,maximumFractionDigits:2}).format(n)}catch(e){return (+n).toFixed(2)}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const r2=n=>Math.round(n*100)/100;const num=(id,min=0)=>Math.max(min,+$(id).value||0);
+const nice=d=>d.toLocaleDateString("en",{timeZone:"UTC",year:"numeric",month:"long",day:"numeric"});
+const parse=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?new Date(Date.UTC(+m[1],+m[2]-1,+m[3])):null};
+const addDays=(d,n)=>new Date(d.getTime()+n*864e5);
+function buildFeats(saved){$("feats").innerHTML=FEATS.map(([k,l,h,on])=>{const s=saved&&saved[k];return `<div class="addon feat"><input type="checkbox" id="f-${k}" aria-label="Include ${esc(l)}" ${(s?s.on:on)?"checked":""}><label for="f-${k}" style="all:unset;font-size:14px">${esc(l)}</label><input type="number" min="0" step="1" id="h-${k}" aria-label="Hours for ${esc(l)}" value="${s?s.h:h}"></div>`}).join("")}
+function calc(){const rate=r2(num("rate"));const fs=FEATS.filter(([k])=>$("f-"+k).checked).map(([k,l])=>({k,l,h:r2(num("h-"+k))}));
+ const devH=r2(fs.reduce((s,f)=>s+f.h,0));const pmP=Math.min(100,num("pm"));const pmH=r2(devH*pmP/100);const hours=r2(devH+pmH);
+ const raw=r2(hours*rate);const R=+$("round").value||1;const total=R>1?Math.ceil(raw/R)*R:raw;
+ const depP=Math.min(100,num("dep"));const dep=r2(total*depP/100);const rest=r2(total-dep);const m1=r2(Math.round(rest/2*100)/100);const m2=r2(rest-m1);
+ const hpw=num("hpw",1);const W=Math.max(2,Math.ceil(hours/hpw));
+ return{rate,fs,devH,pmP,pmH,hours,raw,total,depP,dep,rest,m1,m2,W,support:r2(num("support")),warranty:Math.round(num("warranty")),valid:Math.max(1,Math.round(num("valid",1)))}}
+function phases(W){const d=Math.max(1,Math.round(W*.15)),u=Math.max(1,Math.round(W*.15)),q=Math.max(1,Math.round(W*.15)),b=Math.max(1,W-d-u-q);return[["Discovery & technical spec",d],["UX/UI design & prototype",u],["Development sprints → beta",b],["QA, fixes & launch",q]]}
+function data(){const c=calc();const tname=$("type").selectedOptions[0].textContent;const start=parse($("start").value);
+ const ph=phases(c.W);const W=ph.reduce((s,p)=>s+p[1],0);let t=start;const time=ph.map(([n,w])=>{const row={n,w,from:t,to:t?addDays(t,w*7-1):null};if(t)t=addDays(t,w*7);return row});
+ const out=["Features not listed above (quoted separately as change requests)","Content, copy and data entry","Third-party fees: hosting, app store accounts, paid APIs, licences"];
+ if(!c.fs.some(f=>f.k==="pay"))out.push("Payments / subscriptions");if(!c.fs.some(f=>f.k==="store")&&$("type").value==="mobile")out.push("App Store / Play Store submission");
+ const price=[[`Development: ${c.devH} h × ${money(c.rate)}`,r2(c.devH*c.rate)],[`Project management & QA (${c.pmP}%): ${c.pmH} h`,r2(c.pmH*c.rate)]];if(c.total!==c.raw)price.push(["Rounding",r2(c.total-c.raw)]);
+ const pay=c.depP>=100?[`100% (${money(c.total)}) at signing`]:c.depP<=0?[`50% (${money(c.m1)}) when the beta is delivered`,`50% (${money(c.m2)}) at launch`]:[`${c.depP}% deposit (${money(c.dep)}) at signing, to book the project`,`${money(c.m1)} when the beta is delivered for testing`,`${money(c.m2)} at launch, before production handover`];
+ const today=new Date();const until=addDays(new Date(Date.UTC(today.getFullYear(),today.getMonth(),today.getDate())),c.valid);
+ return{c,tname,time,W,out,price,pay,until,title:`Development Proposal — ${$("client").value||"Client"}`,meta:`Prepared by ${$("me").value||"—"} · ${tname} · Valid until ${nice(until)}`,
+  stack:`${tname} built with ${$("stack").value||"a stack agreed during discovery"}. Work runs in weekly sprints with a demo at the end of each one, so you see progress and can adjust priorities early. Estimated effort: ${c.hours} hours at about ${num("hpw",1)} hours per week.`,
+  support:c.support>0?`Optional support plan after the warranty: ${money(c.support)}/month — security updates, monitoring, dependency upgrades and small changes.`:"",
+  warr:`${c.warranty>0?`Bugs in the delivered features are fixed free of charge for ${c.warranty} days after launch. `:""}New features or changes to agreed behaviour are quoted separately. Source code and IP transfer to ${$("client").value||"the client"} once the final payment is received.`,
+  next:`Reply “approved” to accept, and I’ll send the contract${c.depP>0?" and the deposit invoice":""}. Discovery starts as soon as the ${c.depP>0?"deposit":"contract"} is in.`}}
+function render(){const D=data(),c=D.c;
+ $("d-title").textContent=D.title;$("d-meta").textContent=D.meta;$("d-goal").textContent=$("goal").value;$("d-stack").textContent=D.stack;
+ $("d-feat").innerHTML=(c.fs.length?c.fs.map(f=>`<tr><td>${esc(f.l)}</td><td class="n">${f.h} h</td></tr>`).join(""):`<tr><td>No features selected</td><td class="n">0 h</td></tr>`)+`<tr class="total"><td>Development hours</td><td class="n">${c.devH} h</td></tr>`;
+ $("d-out").innerHTML=D.out.map(s=>`<li>${esc(s)}</li>`).join("");
+ $("d-time").innerHTML=D.time.map(r=>`<tr><td>${esc(r.n)}</td><td class="n">${r.w} week${r.w>1?"s":""}${r.from?`<br><span class="meta">${nice(r.from)} – ${nice(r.to)}</span>`:""}</td></tr>`).join("")+`<tr class="total"><td>Total</td><td class="n" id="d-weeks">${D.W} weeks</td></tr>`;
+ $("d-price").innerHTML=D.price.map(([l,p])=>`<tr><td>${esc(l)}</td><td class="n">${money(p)}</td></tr>`).join("")+`<tr class="total"><td>Project total</td><td class="n" id="d-total">${money(c.total)}</td></tr>`;
+ $("d-support").textContent=D.support;$("d-support").style.display=D.support?"":"none";
+ $("d-pay").innerHTML=D.pay.map(s=>`<li>${esc(s)}</li>`).join("");$("d-warr").textContent=D.warr;$("d-next").textContent=D.next;
+ $("warn").textContent=c.rate<=0?"Set an hourly rate to price the project.":c.fs.length===0?"Tick at least one feature.":"";
+ try{localStorage.setItem(KEY,JSON.stringify({...Object.fromEntries(ids.map(i=>[i,$(i).value])),feats:Object.fromEntries(FEATS.map(([k])=>[k,{on:$("f-"+k).checked,h:$("h-"+k).value}]))}))}catch(e){}}
+function asText(){const D=data(),c=D.c;const L=[D.title.toUpperCase(),D.meta,"","GOAL",$("goal").value,"","APPROACH & TECH STACK",D.stack,"","FEATURES IN SCOPE",...c.fs.map(f=>`- ${f.l}: ${f.h} h`),`Development hours: ${c.devH} h`,"","NOT INCLUDED",...D.out.map(s=>"- "+s),"","MILESTONES",...D.time.map(r=>`- ${r.n}: ${r.w} week${r.w>1?"s":""}${r.from?` (${nice(r.from)} – ${nice(r.to)})`:""}`),`Total: ${D.W} weeks`,"","INVESTMENT",...D.price.map(([l,p])=>`- ${l}: ${money(p)}`),`Project total: ${money(c.total)}`];if(D.support)L.push(D.support);L.push("","PAYMENT SCHEDULE",...D.pay.map(s=>"- "+s),"","WARRANTY & OWNERSHIP",D.warr,"","NEXT STEP",D.next);return L.join("\n")}
+let saved=null;try{saved=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+buildFeats(saved&&saved.feats);if(saved)ids.forEach(i=>{if(saved[i]!=null)$(i).value=saved[i]});
+$("type").addEventListener("change",()=>{$("stack").value=STACK[$("type").value];if($("type").value!=="mobile")$("f-store").checked=false;else $("f-store").checked=true;render()});
+document.addEventListener("input",render);document.addEventListener("change",render);
+$("print").onclick=()=>window.print();
+$("copy").onclick=async()=>{const v=asText();try{await navigator.clipboard.writeText(v);$("copied").textContent="Copied."}catch(e){$("copied").textContent="Copy failed — select the proposal and copy it manually."}};
+document.querySelectorAll(".buy").forEach(b=>{if(CHECKOUT_URL){b.href=CHECKOUT_URL}else{b.textContent="Pro pack — coming soon";b.removeAttribute("href");b.style.opacity=.7}});
+render();
+</script>
+</body>
+</html>
